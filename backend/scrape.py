@@ -2,6 +2,7 @@ import Harris_farm_markets
 import requests
 from bs4 import BeautifulSoup
 import random
+import urllib.parse
 
 
 # QUICK INTRO: MOST IMPORTANT FUNCTIONS
@@ -29,9 +30,19 @@ def colesScrape(URL):
             NAMETAG = soup.find(class_="product__title")
             COSTTAG = soup.find(class_="price__value")
             SAVEDTAG = soup.find(class_="badge-label")
-            LINKTAG = soup.find(class_="sc-51f151be-0 irGhqP")
+            LINKTAG = soup.find('img', src=True)
 
-            imageLink = LINKTAG.find('img')['src']
+            # Split the partial URL to extract the query string
+            query_string = LINKTAG['src'].split('?')[1]
+
+            # Parse the query string and extract the 'url' parameter
+            parsed_query = urllib.parse.parse_qs(query_string)
+            url_parameter = parsed_query['url'][0]
+
+            # Decode the URL encoding
+            imageLink = urllib.parse.unquote(url_parameter)
+
+
             name = NAMETAG.text.split('|')[0]
             name = name.replace("Coles ", "")
 
@@ -144,8 +155,10 @@ def randomSelect(array):
 # TEST = "https://www.aldi.com.au/groceries/super-savers/"
 # print(aldiScrape(TEST))
 
-meatScrape()
-vegetableScrape()
-fruitScrape()
-FINAL = randomSelect(seafoodScrape())
-print(FINAL)
+for obj in meatScrape():
+    print(obj)
+# meatScrape()
+# vegetableScrape()
+# fruitScrape()
+# FINAL = randomSelect(seafoodScrape())
+# print(FINAL)
