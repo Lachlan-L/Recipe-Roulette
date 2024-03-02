@@ -45,7 +45,7 @@ const LandingPage = () => {
     <div class="middle-section">
       <div class="project-title">
         Project: 
-        <p>Recipe Roulette</p>
+        <p class="recipe-roulette">Recipe Roulette</p>
       </div>
       <div class="button-container">
         <button class="btn-87">

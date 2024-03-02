@@ -22,6 +22,13 @@ body {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     padding: 10% 10%;
+    transition: transform 2s ease;
+}
+
+.recipe-wrapper.flipped {
+    /* Styles for flipped state */
+    transform: rotateY(360deg) translateZ(-100px);
+    /* Add any other styles you need for the flipped state */
 }
 
 .title-wrapper {
@@ -36,27 +43,25 @@ body {
     margin: 40px;
 }
 
-button {
+.reroll {
     padding: 50px;
     background-color: transparent;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 15rem;
+    font-size: 7rem;
     transition: 1s;
     border: none;
+    margin-top: 50%;
 }
 
-button:hover {
+.reroll:hover {
     color: white;
     transition: 1s;
-    font-size: 17rem;
+    font-size: 10rem;
 }
 
-button:active {
-    transform: rotate(720deg);
+.reroll:active {
+    transform: rotate(360deg);
     transition: 2ms;
 
 }
 
-p {
-    text-align: left;
-}

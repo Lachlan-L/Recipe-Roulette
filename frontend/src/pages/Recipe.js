@@ -14,44 +14,27 @@ const Recipe = () => {
         }
       )
     }, [])
+const [isFlipped, setIsFlipped] = useState(false);
 
-  function handleClick() {
-    document.getElementById('recipe-box').style.color = 'red';
-  }
+  const handleButtonClick = () => {
+    setIsFlipped(!isFlipped);
+  };
 
   return (
   <div class="page-wrapper">
   <div class="main-wrapper">
     <div id="recipe-box" class="recipe-wrapper">
         <div class="title-wrapper">
-            <div>
-                {(typeof data.title === 'undefined') ? (
-                    <p>Loading...</p>
-                ) : (
-                    <h2>{data.title}</h2>
-                )}
-            </div>
+            Title Placeholder
         </div>
         <div class="image-wrapper">
             <div>
-                {(typeof data.image === 'undefined') ? (
-                    <p>Loading...</p>
-                ) : (
-                    <img src={data.image} alt="food image"></img>
-                )}
+                Image Placeholder
             </div>
         </div>
         <div class="ingredients-wrapper">
             <div>
-                {(typeof data.ingredients === 'undefined') ? (
-                    <p>Loading...</p>
-                ) : (
-                    <ul>
-                        {data.ingredients.map((ingredient, i) => (
-                            <li key={i}>{ingredient}</li>
-                        ))}
-                    </ul>
-                )}
+                Ingredients Placeholder
             </div>
         </div>
     </div>
@@ -61,6 +44,8 @@ const Recipe = () => {
         </button>
     </div>
   </div>
+    
+    
     
     
   </div>);
