@@ -23,26 +23,6 @@ def getRecipes(ingredients, sort):
         soup = BeautifulSoup(page.content, 'html.parser')
     return links
 
-def getRecipesJson(ingredients, sort):
-    json_string = json.dumps(getRecipes(ingredients, sort))
-    return json_string
-
-def getRandomRecipe(ingredients, sort):
-    randomRecipe = random.choice(getRecipes(ingredients, sort))
-    details = {"url": randomRecipe}
-    details = details.update(getDetails(randomRecipe))
-    return details
-
-def getRandomRecipeJson(ingredients, sort):
-    json_string = json.dumps(getRandomRecipe(ingredients, sort), indent=4)
-    return json_string
-
-
-#rating, relevance, recent, az, cookTime, calories
-sort = "az"
-ingredients = "mandarin"
-# print(getRecipes(ingredients, sort))
-
 # given the exact link to a website recipe taste.com.au
 # returns the following json
 # {
@@ -51,15 +31,38 @@ ingredients = "mandarin"
 #  ingredients: [apple, pie]
 # }
 def getDetails(recipeUrl):
-    page = requests.get(recipeUrl)
+    page = requests.get("https://www.taste.com.au" + recipeUrl)
     soup = BeautifulSoup(page.content, 'html.parser')
     img = soup.find(class_ = "main-icon")['src']
     title = soup.find('div', class_='recipe-title-container').find('h1').text.strip()
     ingredients = [div.text.strip() for div in soup.find_all('div', class_="ingredient-description")]
     details = {"title": title, "image": img, "ingredients": ingredients}
-    json_string = json.dumps(details, indent=4)
+    return details
+
+
+def getRandomRecipe(ingredients, sort):
+    randomRecipe = random.choice(getRecipes(ingredients, sort))
+    details = {"url": "https://www.taste.com.au" + randomRecipe}
+    alldetails = {**details, **getDetails(randomRecipe)}
+    return alldetails
+
+# the function being called in the http request
+# returns a json with url, ingredients, title, image
+def getRandomRecipeJson(ingredients, sort):
+    json_string = json.dumps(getRandomRecipe(ingredients, sort), indent=4)
     return json_string
+
+# print(getRandomRecipeJson("mandarin", "az"))
+
+#rating, relevance, recent, az, cookTime, calories
+sort = "az"
+ingredients = "mandarin"
+# print(getRecipes(ingredients, sort))
 
 def getDetailsJson(recipeUrl):
     json_string = json.dumps(getDetails(recipeUrl), indent=4)
+    return json_string
+
+def getRecipesJson(ingredients, sort):
+    json_string = json.dumps(getRecipes(ingredients, sort))
     return json_string
