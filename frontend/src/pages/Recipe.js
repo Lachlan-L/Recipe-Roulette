@@ -4,8 +4,9 @@ import "./Recipe.css";
 const Recipe = () => {
   
   function handleClick() {
-    document.getElementById('recipe-box').style = 'transform: rotate()'
+    document.getElementById('recipe-box').style.color = 'red';
   }
+
   return (
   <div class="page-wrapper">
   <div class="main-wrapper">
@@ -25,7 +26,7 @@ const Recipe = () => {
         </div>
     </div>
     <div class="button-wrapper">
-        <button>
+        <button onClick={handleClick}>
             <p>REROLL</p>
         </button>
     </div>
