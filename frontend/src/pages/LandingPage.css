@@ -1,0 +1,90 @@
+body {
+    background-color: #36c9be;
+}
+
+@font-face {
+    font-family: myFont;
+    src: url(./assets/BloggerSans-Bold.otf);
+}
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+}
+
+@keyframes scroll {
+	0% { transform: translateX(-600px); }
+	100% { transform: translateX(100vw)}
+}
+
+
+.slider {
+    height: 100px;
+    overflow: hidden;
+
+    &::before,
+	&::after {
+		@include white-gradient;
+		content: "";
+		height: 100px;
+		position: absolute;
+		width: 200px;
+		z-index: 2;
+	}
+	
+	&::after {
+		right: 0;
+		top: 0;
+		transform: rotateZ(180deg);
+    }
+
+    &::before {
+		left: 0;
+		top: 0;
+    }
+
+}
+
+.slide-track {
+    animation: scroll 9s linear infinite;
+    display: flex;
+    width: 500px;
+}
+
+.slide {
+    height: 100px;
+    width: 250px;
+}
+
+.project-title {
+    text-align: center;
+    font-size: 220px;
+    font-family: myFont;
+    font-weight: bold;
+    min-width: 400px;
+    color: white;
+    
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 60px;
+}
+
+
+.middle-section {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+p {
+    margin: 0px;
+}
