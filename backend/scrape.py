@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import random
 import urllib.parse
 import json
+import os
 
 # QUICK INTRO: MOST IMPORTANT FUNCTIONS
 
@@ -128,6 +129,20 @@ def seafoodScrape():
 def randomSelect(array):
     return json.dumps(random.choice(array))
 
+def outputData(array, path):
+    # Open the file in write mode
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w+') as file:
+    # Write the JSON representation of the input array to the file
+        json.dump(array, file)
+
+def readData(path):
+        # Open the file in read mode
+    with open(path, 'r') as file:
+        # Load the JSON data from the file
+        json_data = json.load(file)
+        return json_data
+
 # FRUIT "https://www.coles.com.au/on-special/fruit-vegetables/fruit?page=1"
 # VEGETABLE "https://www.coles.com.au/on-special/fruit-vegetables/vegetables"
 # SEAFOOD "https://www.coles.com.au/on-special/meat-seafood/seafood"
@@ -154,8 +169,8 @@ def randomSelect(array):
 # TEST = "https://www.aldi.com.au/groceries/super-savers/"
 # print(aldiScrape(TEST))
 
-for obj in meatScrape():
-    print(obj)
+# for obj in meatScrape():
+#     print(obj)
 # meatScrape()
 # vegetableScrape()
 # fruitScrape()
