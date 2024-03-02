@@ -47,15 +47,16 @@ body {
     padding: 50px;
     background-color: transparent;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 15rem;
+    font-size: 7rem;
     transition: 1s;
     border: none;
+    margin-top: 50%;
 }
 
 .reroll:hover {
     color: white;
     transition: 1s;
-    font-size: 17rem;
+    font-size: 10rem;
 }
 
 .reroll:active {
