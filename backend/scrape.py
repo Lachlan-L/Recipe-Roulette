@@ -1,6 +1,20 @@
 import Harris_farm_markets
 import requests
 from bs4 import BeautifulSoup
+import random
+
+
+# QUICK INTRO: MOST IMPORTANT FUNCTIONS
+
+# SELF EXPLANATORY: returns array of ingredient objects
+# meatScrape
+# vegetableScrape
+# seafoodScrape
+# fruitScrape
+
+# returns 1 ingredient object given an array
+# randomSelect
+
 
 def colesScrape(URL):
     page = requests.get(URL)
@@ -101,6 +115,9 @@ def seafoodScrape():
         array.append(obj)
     return array
 
+def randomSelect(array):
+    return random.choice(array)
+
 # FRUIT "https://www.coles.com.au/on-special/fruit-vegetables/fruit?page=1"
 # VEGETABLE "https://www.coles.com.au/on-special/fruit-vegetables/vegetables"
 # SEAFOOD "https://www.coles.com.au/on-special/meat-seafood/seafood"
@@ -130,4 +147,5 @@ def seafoodScrape():
 meatScrape()
 vegetableScrape()
 fruitScrape()
-seafoodScrape()
+FINAL = randomSelect(seafoodScrape())
+print(FINAL)
