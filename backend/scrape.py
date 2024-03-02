@@ -155,8 +155,8 @@ def randomSelect(array):
 # TEST = "https://www.aldi.com.au/groceries/super-savers/"
 # print(aldiScrape(TEST))
 
-for obj in meatScrape():
-    print(obj)
+# for obj in meatScrape():
+#     print(obj)
 # meatScrape()
 # vegetableScrape()
 # fruitScrape()
