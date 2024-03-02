@@ -49,16 +49,20 @@ def getRecipeDetails():
 def getIngredient():
     if(request.args.get('category') != None):
         if (request.args.get('category') == 'meat'):
-            return scrape.randomSelect(scrape.meatScrape())
+            return scrape.randomSelect(scrape.readData('backend/data/meat.json'))
         elif (request.args.get('category') == 'vegetable'):
-            return scrape.randomSelect(scrape.vegetableScrape())
+            return scrape.randomSelect(scrape.readData('backend/data/vegetable.json'))
         elif (request.args.get('category') == 'fruit'):
-            return scrape.randomSelect(scrape.fruitScrape())
+            return scrape.randomSelect(scrape.readData('backend/data/fruit.json'))
         elif (request.args.get('category') == 'seafood'):
-            return scrape.randomSelect(scrape.seafoodScrape())
+            return scrape.randomSelect(scrape.readData('backend/data/seafood.json'))
     else:
         return 'bad request!', 400
 
 
 if __name__ == "__main__":
+    scrape.outputData(scrape.meatScrape(), 'backend/data/meat.json')
+    scrape.outputData(scrape.vegetableScrape(), 'backend/data/vegetable.json')
+    scrape.outputData(scrape.seafoodScrape(), 'backend/data/seafood.json')
+    scrape.outputData(scrape.fruitScrape(), 'backend/data/fruit.json')
     app.run(debug = True, port = 5001)
