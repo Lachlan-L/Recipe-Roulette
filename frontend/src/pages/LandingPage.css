@@ -9,7 +9,7 @@ body {
 .page-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 img {
@@ -19,35 +19,13 @@ img {
 
 @keyframes scroll {
 	0% { transform: translateX(-600px); }
-	100% { transform: translateX(100vw)}
+	100% { transform: translateX(100vw); }
 }
-
 
 .slider {
     height: 100px;
     overflow: hidden;
-
-    &::before,
-	&::after {
-		@include white-gradient;
-		content: "";
-		height: 100px;
-		position: absolute;
-		width: 200px;
-		z-index: 2;
-	}
-	
-	&::after {
-		right: 0;
-		top: 0;
-		transform: rotateZ(180deg);
-    }
-
-    &::before {
-		left: 0;
-		top: 0;
-    }
-
+    
 }
 
 .slide-track {
@@ -63,10 +41,10 @@ img {
 
 .project-title {
     text-align: center;
-    font-size: 220px;
+    font-size: 200px;
     font-family: myFont;
     font-weight: bold;
-    min-width: 400px;
+    min-width: 200px;
     color: white;
     
 }
@@ -79,7 +57,7 @@ img {
 
 
 .middle-section {
-    min-height: 400px;
+    min-height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -87,4 +65,11 @@ img {
 
 p {
     margin: 0px;
+}
+
+@media (max-width: 1400px) {
+    .project-title {
+        font-size: 150px;
+        transition: 1s;
+    }
 }
