@@ -14,7 +14,6 @@ def webpage_scraper(url):
         # Parse the HTML content
         soup = BeautifulSoup(response.text, 'html.parser')
         product_divs = soup.find_all('div', class_=lambda cls: cls and 'product-item' in cls)
-        print(soup.find(class_="is-special"))
 
         # Loop through each product div
         for div in product_divs:
@@ -25,7 +24,6 @@ def webpage_scraper(url):
             # Find cost information
             cost_span = div.find('span', class_='from_price')
             if cost_span is None:
-                print("FAIL")
                 continue
             else:
                 product_path = product_link['href']
@@ -69,5 +67,5 @@ def harrisSeafoodScrape():
 
 
 # print(webpage_scraper('https://www.harrisfarm.com.au/collections/online-specials'))
-for obj in harrisVegScrape():
-    print(obj)
+# for obj in harrisVegScrape():
+#     print(obj)
