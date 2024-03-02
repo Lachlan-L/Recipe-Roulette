@@ -61,27 +61,29 @@ const Roulette = () => {
   }
 
   return (
-    <div className="container">
-      <h1 className="title">Test Your Luck</h1>
-      <div className="box-row">
-        {images.map((imageSrc, index) => (
-          <div key={index} className="box-container">
-            <div className="box">
-              <img src={imageSrc} alt={`Slot ${index}`} />
+    <div className="page">
+      <div className="container">
+        <h1 className="title">Test Your Luck</h1>
+        <div className="box-row">
+          {images.map((imageSrc, index) => (
+            <div key={index} className="box-container">
+              <div className="box">
+                <img src={imageSrc} alt={`Slot ${index}`} />
+              </div>
+              {clicked && <button className="rerollButton" onClick={() => handleReroll(index)}>Reroll</button>}
+              <div class="select-wrapper">
+              <select class="drop-down" value={selections[index]} onChange={e => setSelection(e.target.value, index)}>
+                {options.map(option => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
             </div>
-            {clicked && <button className="rerollButton" onClick={() => handleReroll(index)}>Reroll</button>}
-            <div class="select-wrapper">
-            <select class="drop-down" value={selections[index]} onChange={e => setSelection(e.target.value, index)}>
-              {options.map(option => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
+        <button onClick={handleSpinAll} className="spinButton">Spin All</button>
+        {clicked &&<button onClick={recipe} className="recipeButton">Find Recipe</button>}
       </div>
-      <button onClick={handleSpinAll} className="spinButton">Spin All</button>
-      {clicked &&<button onClick={recipe} className="recipeButton">Find Recipe</button>}
     </div>
   );
 };
