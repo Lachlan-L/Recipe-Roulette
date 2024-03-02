@@ -1,0 +1,62 @@
+body {
+}
+.main-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.recipe-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid black ;
+    justify-content: space-around;
+    background-color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 10% 10%;
+}
+
+.title-wrapper {
+    margin: 40px;
+}
+
+.image-wrapper {
+    margin: 40px;
+}
+
+.ingredients-wrapper {
+    margin: 40px;
+}
+
+button {
+    padding: 50px;
+    background-color: transparent;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15rem;
+    transition: 1s;
+    border: none;
+}
+
+button:hover {
+    color: white;
+    transition: 1s;
+    font-size: 17rem;
+}
+
+button:active {
+    transform: rotate(720deg);
+    transition: 2ms;
+
+}
+
+p {
+    text-align: left;
+}

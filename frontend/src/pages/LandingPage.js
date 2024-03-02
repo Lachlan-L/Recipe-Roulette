@@ -5,7 +5,6 @@ import apple from "./assets/apple.png";
 import banana from "./assets/banana.png";
 import grape from "./assets/grape.png";
 import pumpkin from "./assets/pumpkin.png";
-import meat from "./assets/meat.png";
 import carrot from "./assets/carrot.png";
 import steak from "./assets/steak.png";
 import chicken from "./assets/chicken.png";
