@@ -88,22 +88,18 @@ def meatScrape():
     returnObj = colesScrape("https://www.coles.com.au/on-special/meat-seafood/bbq-sausages-burgers?page=1")
     for obj in colesScrape("https://www.coles.com.au/on-special/meat-seafood/beef-veal?page=1"):
         returnObj.append(obj)
-    for obj in colesScrape("https://www.coles.com.au/on-special/meat-seafood/game?page=1"):
-        returnObj.append(obj)
-    for obj in colesScrape("https://www.coles.com.au/on-special/meat-seafood/hams-bacon?page=1"):
-        returnObj.append(obj)
     for obj in colesScrape("https://www.coles.com.au/on-special/meat-seafood/lamb?page=1"):
         returnObj.append(obj)
     for obj in colesScrape("https://www.coles.com.au/on-special/meat-seafood/mince?page=1"):
         returnObj.append(obj)
-    for obj in colesScrape("https://www.coles.com.au/on-special/meat-seafood/organic-meat?page=1"):
-        returnObj.append(obj)
+    # for obj in colesScrape("https://www.coles.com.au/on-special/meat-seafood/organic-meat?page=1"):
+    #     returnObj.append(obj)
     for obj in colesScrape("https://www.coles.com.au/on-special/meat-seafood/pork?page=1"):
         returnObj.append(obj)
     for obj in colesScrape("https://www.coles.com.au/on-special/meat-seafood/poultry?page=1"):
         returnObj.append(obj)
-    for obj in colesScrape("https://www.coles.com.au/on-special/meat-seafood/meat-free-range?page=1"):
-        returnObj.append(obj)
+    # for obj in colesScrape("https://www.coles.com.au/on-special/meat-seafood/meat-free-range?page=1"):
+    #     returnObj.append(obj)
     for obj in Harris_farm_markets.harrisMeatScrape():
         returnObj.append(obj)
     return returnObj
