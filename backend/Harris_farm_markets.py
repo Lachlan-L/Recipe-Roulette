@@ -44,7 +44,8 @@ def webpage_scraper(url):
                 product_dict = {
                         'name': product_name,
                         'cost': cost,
-                        'image': image_url
+                        'image': image_url,
+                        'link': "harrisfarm.com.au" + product_path,
                     }
 
                 returnObj.append(product_dict)

@@ -9,8 +9,15 @@ import carrot from "./assets/carrot.png";
 import steak from "./assets/steak.png";
 import chicken from "./assets/chicken.png";
 import fish from "./assets/fish.png";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate('/spin');
+  }
+
   return (
   <div class="page-wrapper">
     <div class="slider">
@@ -48,7 +55,7 @@ const LandingPage = () => {
         <p class="discount">Meals made cheap</p>
       </div>
       <div class="button-container">
-        <button class="btn-87">
+        <button class="btn-87" onClick={handleClick}>
           <span>Spin for recipes</span>
           <svg aria-hidden><circle></circle></svg>
         </button>

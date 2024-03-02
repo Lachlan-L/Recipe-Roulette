@@ -32,6 +32,7 @@ def colesScrape(URL):
             SAVEDTAG = soup.find(class_="badge-label")
             LINKTAG = soup.find('img', src=True)
 
+            REFTAG = soup.find(class_="product__link")
             # Split the partial URL to extract the query string
             query_string = LINKTAG['src'].split('?')[1]
 
@@ -53,6 +54,7 @@ def colesScrape(URL):
             newObj['name'] = name
             newObj['cost'] = float(COSTTAG.text[1:])
             newObj['image'] = imageLink
+            newObj['link'] = "coles.com.au" + REFTAG['href']
             # newObj['saved'] = float(saved.split(" ")[1][1:])
 
             returnArray.append(newObj)
@@ -74,6 +76,7 @@ def aldiScrape(URL):
         NAMETAG = soup.find(class_="box--description--header")
         COSTTAG = soup.find(class_="box--value")
         CENTTAG = soup.find(class_="box--decimal")
+
 
         imageLink = obj.find('img')['src']
         newObj = {}
@@ -151,8 +154,8 @@ def randomSelect(array):
 # TEST = "https://www.aldi.com.au/groceries/super-savers/"
 # print(aldiScrape(TEST))
 
-# for obj in meatScrape():
-#     print(obj)
+for obj in meatScrape():
+    print(obj)
 # meatScrape()
 # vegetableScrape()
 # fruitScrape()
