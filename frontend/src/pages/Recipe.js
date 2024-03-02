@@ -27,8 +27,8 @@ const Recipe = () => {
           </div>
       </div>
       <div class="button-wrapper">
-          <button onClick={handleButtonClick}>
-              <p>REROLL</p>
+          <button class="reroll" onClick={handleButtonClick}>
+              <span>REROLL</span>
           </button>
       </div>
     </div>

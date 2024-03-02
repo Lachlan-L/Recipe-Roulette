@@ -43,7 +43,7 @@ body {
     margin: 40px;
 }
 
-button {
+.reroll {
     padding: 50px;
     background-color: transparent;
     font-family: 'Times New Roman', Times, serif;
@@ -52,18 +52,15 @@ button {
     border: none;
 }
 
-button:hover {
+.reroll:hover {
     color: white;
     transition: 1s;
     font-size: 17rem;
 }
 
-button:active {
+.reroll:active {
     transform: rotate(360deg);
     transition: 2ms;
 
 }
 
-p {
-    text-align: left;
-}
