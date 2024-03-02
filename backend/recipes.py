@@ -44,3 +44,5 @@ def getDetails(recipeUrl):
     details = {"title": title, "image": img, "ingredients": ingredients}
     json_string = json.dumps(details, indent=4)
     return json_string
+
+print(getDetails("https://www.taste.com.au/recipes/basic-beef-burger/a584ab73-6348-4c78-879e-eb7560965a5f"))

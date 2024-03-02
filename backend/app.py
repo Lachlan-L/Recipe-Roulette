@@ -4,9 +4,13 @@ from recipes import getDetails, getRecipes
 
 app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return "gyat";
+
 @app.route("/members")
 def members():
-    return {"members": ["Member1", "Member2", "Member3"]}
+    return {"title": "apple-pie", "image": "apple_png.png", "ingredients": ["feet", "lettuce"]}
 
 @app.route("/get-recipe-details", methods=['GET'])
 def getRecipeDetails():
@@ -25,4 +29,4 @@ def getRecipeList():
         return 'bad request!', 400
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug = True, port = 5001)

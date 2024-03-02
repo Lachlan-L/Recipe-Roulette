@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
 import "./Recipe.css";
 
 const Recipe = () => {
-  
+    const [data, setData] = useState([{}])
+
+    useEffect(() => {
+      fetch("/get-recipes").then(
+        res => res.json()
+      ).then(
+        data => {
+          setData(data)
+          console.log(data)
+        }
+      )
+    }, [])
+
   function handleClick() {
     document.getElementById('recipe-box').style.color = 'red';
   }
@@ -12,16 +24,34 @@ const Recipe = () => {
   <div class="main-wrapper">
     <div id="recipe-box" class="recipe-wrapper">
         <div class="title-wrapper">
-            Title Placeholder
+            <div>
+                {(typeof data.title === 'undefined') ? (
+                    <p>Loading...</p>
+                ) : (
+                    <h2>{data.title}</h2>
+                )}
+            </div>
         </div>
         <div class="image-wrapper">
             <div>
-                Image Placeholder
+                {(typeof data.image === 'undefined') ? (
+                    <p>Loading...</p>
+                ) : (
+                    <img src={data.image} alt="food image"></img>
+                )}
             </div>
         </div>
         <div class="ingredients-wrapper">
             <div>
-                Ingredients Placeholder
+                {(typeof data.ingredients === 'undefined') ? (
+                    <p>Loading...</p>
+                ) : (
+                    <ul>
+                        {data.ingredients.map((ingredient, i) => (
+                            <li key={i}>{ingredient}</li>
+                        ))}
+                    </ul>
+                )}
             </div>
         </div>
     </div>
