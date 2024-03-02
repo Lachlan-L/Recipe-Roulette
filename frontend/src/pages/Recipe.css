@@ -23,6 +23,7 @@ body {
     border-bottom-right-radius: 20px;
     padding: 10% 10%;
     transition: transform 2s ease;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .recipe-wrapper.flipped {
@@ -32,6 +33,7 @@ body {
 }
 
 .title-wrapper {
+    border-bottom: 1px solid;
     margin: 40px;
 }
 
