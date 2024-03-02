@@ -5,7 +5,6 @@ import apple from "./assets/apple.png";
 import banana from "./assets/banana.png";
 import grape from "./assets/grape.png";
 import pumpkin from "./assets/pumpkin.png";
-import meat from "./assets/meat.png";
 import carrot from "./assets/carrot.png";
 import steak from "./assets/steak.png";
 import chicken from "./assets/chicken.png";
@@ -46,7 +45,7 @@ const LandingPage = () => {
     <div class="middle-section">
       <div class="project-title">
         Project: 
-        <p>Recipe Roulette</p>
+        <p class="recipe-roulette">Recipe Roulette</p>
       </div>
       <div class="button-container">
         <button class="btn-87">
