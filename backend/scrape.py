@@ -19,6 +19,7 @@ def colesScrape(URL):
 
             imageLink = LINKTAG.find('img')['src']
             name = NAMETAG.text.split('|')[0]
+            name = name.replace("Coles ", "")
 
             if SAVEDTAG:
                 saved = SAVEDTAG.text
