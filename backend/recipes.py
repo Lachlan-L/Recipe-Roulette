@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup, SoupStrainer
 import requests
 import json
+import random
 
 # given list of ingredients and sort type
 # returns array of links for every recipe
@@ -20,8 +21,22 @@ def getRecipes(ingredients, sort):
         pageNo += 1
         page = requests.get(url.format(pageNo, ingredients, sort))
         soup = BeautifulSoup(page.content, 'html.parser')
-    json_string = json.dumps(links)
+    return links
+
+def getRecipesJson(ingredients, sort):
+    json_string = json.dumps(getRecipes(ingredients, sort))
     return json_string
+
+def getRandomRecipe(ingredients, sort):
+    randomRecipe = random.choice(getRecipes(ingredients, sort))
+    details = {"url": randomRecipe}
+    details = details.update(getDetails(randomRecipe))
+    return details
+
+def getRandomRecipeJson(ingredients, sort):
+    json_string = json.dumps(getRandomRecipe(ingredients, sort), indent=4)
+    return json_string
+
 
 #rating, relevance, recent, az, cookTime, calories
 sort = "az"
@@ -43,4 +58,8 @@ def getDetails(recipeUrl):
     ingredients = [div.text.strip() for div in soup.find_all('div', class_="ingredient-description")]
     details = {"title": title, "image": img, "ingredients": ingredients}
     json_string = json.dumps(details, indent=4)
+    return json_string
+
+def getDetailsJson(recipeUrl):
+    json_string = json.dumps(getDetails(recipeUrl), indent=4)
     return json_string
