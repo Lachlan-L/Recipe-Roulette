@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import random
 import urllib.parse
-
+import json
 
 # QUICK INTRO: MOST IMPORTANT FUNCTIONS
 
@@ -13,7 +13,7 @@ import urllib.parse
 # seafoodScrape
 # fruitScrape
 
-# returns 1 ingredient object given an array
+# returns JSON of (1 ingredient object given an input array)
 # randomSelect
 
 
@@ -127,7 +127,7 @@ def seafoodScrape():
     return array
 
 def randomSelect(array):
-    return random.choice(array)
+    return json.dumps(random.choice(array))
 
 # FRUIT "https://www.coles.com.au/on-special/fruit-vegetables/fruit?page=1"
 # VEGETABLE "https://www.coles.com.au/on-special/fruit-vegetables/vegetables"
