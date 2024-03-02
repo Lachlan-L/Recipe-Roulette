@@ -1,5 +1,6 @@
 from flask import Flask, request
 from recipes import getDetails, getRecipes
+import scrape
 
 
 app = Flask(__name__)
@@ -23,6 +24,22 @@ def getRecipeList():
         return getRecipes(request.args.get('ingredients'), "az")
     else:
         return 'bad request!', 400
+
+
+@app.route("/get-ingredient", methods=['GET'])
+def getIngredient():
+    if(request.args.get('category') != None):
+        if (request.args.get('category') == 'meat'):
+            return scrape.randomSelect(scrape.meatScrape())
+        elif (request.args.get('category') == 'vegetable'):
+            return scrape.randomSelect(scrape.vegetableScrape())
+        elif (request.args.get('category') == 'fruit'):
+            return scrape.randomSelect(scrape.fruitScrape())
+        elif (request.args.get('category') == 'seafood'):
+            return scrape.randomSelect(scrape.seafoodScrape())
+    else:
+        return 'bad request!', 400
+
 
 if __name__ == "__main__":
     app.run(debug = True)
