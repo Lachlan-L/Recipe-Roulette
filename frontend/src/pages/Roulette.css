@@ -44,6 +44,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
+    flex-direction: column;
 }
   
 .box img {
@@ -115,4 +116,12 @@
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     background-color: white;
+}
+
+.ing-name {
+    margin-bottom: 10px;
+}
+
+.ing-cost {
+    margin-top: 10px;
 }
