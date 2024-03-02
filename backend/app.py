@@ -6,12 +6,10 @@ import scrape
 app = Flask(__name__)
 
 @app.route('/')
-def home():
-    return "gyat";
 
 @app.route("/members")
 def members():
-    return {"title": "apple-pie", "image": "apple_png.png", "ingredients": ["feet", "lettuce"]}
+    return {"title": "apple-pie", "image": "apple_png.png", "ingredients": ["apple", "lettuce"]}
 
 
 # Example return value
