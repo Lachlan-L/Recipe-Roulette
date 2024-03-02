@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import os
+import re
 
 def webpage_scraper(url):
     # Fetch the webpage content
@@ -23,7 +24,6 @@ def webpage_scraper(url):
             image_tag = div.find('img', src=True)
             # Find cost information
             cost_span = div.find('span', class_='from_price')
-            print(cost_span)
             if cost_span is None:
                 print("FAIL")
                 continue
@@ -35,10 +35,13 @@ def webpage_scraper(url):
                 cost = cost_span.text.strip() if cost_span else 'Price not available'
 
                 pattern = re.compile(r'\d+$')
-                product_name = [pattern.sub('', s) for s in product_name]
-                product_name = ''.join(product_name)
-                product_name = product_name.rstrip()
+                # Check if the string ends with a number
+                match = pattern.search(product_name)
+                # If a number is found at the end, remove it
+                if match:
+                    product_name = product_name[:match.start()]
 
+                product_name = product_name.rstrip()
                 # Print the product details
                 product_dict = {
                         'name': product_name,

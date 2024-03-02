@@ -4,14 +4,14 @@ from bs4 import BeautifulSoup
 
 def colesScrape(URL):
     page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "lmxl.parser")
+    soup = BeautifulSoup(page.content, "html.parser")
 
     returnArray = []
     pageNum = 1
     while (len(soup.findAll(attrs={'class': 'sc-6fb8ea3a-3 kzXkbX coles-targeting-ProductTileProductTileWrapper'})) != 0):
         objs = soup.findAll(attrs={'class': 'sc-6fb8ea3a-3 kzXkbX coles-targeting-ProductTileProductTileWrapper'})
         for obj in objs:
-            soup = BeautifulSoup(str(obj), "lmxl.parser")
+            soup = BeautifulSoup(str(obj), "html.parser")
             NAMETAG = soup.find(class_="product__title")
             COSTTAG = soup.find(class_="price__value")
             SAVEDTAG = soup.find(class_="badge-label")
@@ -35,17 +35,17 @@ def colesScrape(URL):
         pageNum = pageNum + 1
         URL = URL[:-1] + str(pageNum)
         page = requests.get(URL)
-        soup = BeautifulSoup(page.content, "lmxl.parser")
+        soup = BeautifulSoup(page.content, "html.parser")
     return returnArray
 
 def aldiScrape(URL):
     page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "lmxl.parser")
+    soup = BeautifulSoup(page.content, "html.parser")
     objs = soup.find_all(class_="box--wrapper ym-gl ym-g25")
 
     returnArray = []
     for obj in objs:
-        soup = BeautifulSoup(str(obj), "lmxl.parser")
+        soup = BeautifulSoup(str(obj), "html.parser")
         NAMETAG = soup.find(class_="box--description--header")
         COSTTAG = soup.find(class_="box--value")
         CENTTAG = soup.find(class_="box--decimal")
@@ -58,10 +58,6 @@ def aldiScrape(URL):
 
         returnArray.append(newObj)
     return returnArray
-
-TEST = "https://www.coles.com.au/on-special/meat-seafood?page=1"
-print(colesScrape(TEST))
-
 
 def meatScrape():
     returnObj = colesScrape("https://www.coles.com.au/on-special/meat-seafood/bbq-sausages-burgers?page=1")
@@ -83,16 +79,27 @@ def meatScrape():
         returnObj.append(obj)
     for obj in colesScrape("https://www.coles.com.au/on-special/meat-seafood/meat-free-range?page=1"):
         returnObj.append(obj)
+    for obj in Harris_farm_markets.harrisMeatScrape():
+        returnObj.append(obj)
     return returnObj
 
 def vegetableScrape():
-    return colesScrape("https://www.coles.com.au/on-special/fruit-vegetables/vegetables?page=1")
+    array = colesScrape("https://www.coles.com.au/on-special/fruit-vegetables/vegetables?page=1")
+    for obj in Harris_farm_markets.harrisVegScrape():
+        array.append(obj)
+    return array
 
 def fruitScrape():
-    return colesScrape("https://www.coles.com.au/on-special/fruit-vegetables/fruit?page=1")
+    array = colesScrape("https://www.coles.com.au/on-special/fruit-vegetables/fruit?page=1")
+    for obj in Harris_farm_markets.harrisFruitScrape():
+        array.append(obj)
+    return array
 
 def seafoodScrape():
-    return colesScrape("https://www.coles.com.au/on-special/meat-seafood/seafood?page=1")
+    array =  colesScrape("https://www.coles.com.au/on-special/meat-seafood/seafood?page=1")
+    for obj in Harris_farm_markets.harrisSeafoodScrape():
+        array.append(obj)
+    return array
 
 # FRUIT "https://www.coles.com.au/on-special/fruit-vegetables/fruit?page=1"
 # VEGETABLE "https://www.coles.com.au/on-special/fruit-vegetables/vegetables"
@@ -112,8 +119,15 @@ def seafoodScrape():
 
 # VEGAN MEAT https://www.coles.com.au/on-special/meat-seafood/meat-free-range
 
+# TEST = "https://www.coles.com.au/on-special/meat-seafood?page=1"
+# print(colesScrape(TEST))
 # TEST = "https://www.iga.com.au/low-prices-every-day/"
 # wooliesScrape(TEST)
 
-TEST = "https://www.aldi.com.au/groceries/super-savers/"
-print(aldiScrape(TEST))
+# TEST = "https://www.aldi.com.au/groceries/super-savers/"
+# print(aldiScrape(TEST))
+
+meatScrape()
+vegetableScrape()
+fruitScrape()
+seafoodScrape()
