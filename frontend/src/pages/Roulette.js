@@ -10,74 +10,80 @@ import steak from "./assets/steak.png";
 import chicken from "./assets/chicken.png";
 import fish from "./assets/fish.png";
 
-const options = ['Select', 'Meat', 'Seafood', 'Fruit', 'Vegetables'];
+const options = ['Vegetables', 'Seafood', 'Fruit', 'Meat'];
 const imageOptions = [banana, grape, pumpkin, meat, carrot, steak, chicken, fish, apple];
 
 const Roulette = () => {
-  const [selection1, setSelection1] = useState(options[0]);
-  const [selection2, setSelection2] = useState(options[0]);
-  const [selection3, setSelection3] = useState(options[0]);
+  const [selections, setSelections] = useState(Array(3).fill('Vegetables'));
+  const [images, setImages] = useState(Array(3).fill(apple));
+  const [clicked, setClicked] = useState(false);
 
-  const [currentImage, setCurrentImage] = useState(apple);
+  const handleSpinAll = () => {
+    setClicked(true);
+    for (let index = 0; index < images.length; index++) {
+      handleReroll(index);
+    }
+  };
 
-  const handleSpin = () => {
+  const handleReroll = (index) => {
     let counter = 0;
     const interval = setInterval(() => {
-      setCurrentImage(imageOptions[Math.floor(Math.random() * imageOptions.length)]);
-
+      setImages((currentImages) => currentImages.map((img, i) => {
+        if (i === index) {
+          // Return a new random image for the current slot
+          return imageOptions[Math.floor(Math.random() * imageOptions.length)];
+        }
+        return img;
+      }));
+  
       counter++;
       if (counter > 10) {
         clearInterval(interval);
-        setCurrentImage(apple);
+        // Optionally reset the slot to a specific image after spinning
+        setImages((currentImages) => currentImages.map((img, i) => {
+          if (i === index) {
+            // This could be adjusted to set a specific image after spinning
+            // For now, it randomly selects a new image to simulate a final spin result
+            return imageOptions[Math.floor(Math.random() * imageOptions.length)];
+          }
+          return img;
+        }));
       }
     }, 100);
   };
 
+  const setSelection = (value, index) => {
+    setSelections(choices => 
+      choices.map((item, i) => i === index ? value : item)
+    );
+  }
+
+  const recipe = () => {
+
+  }
+
   return (
     <div className="container">
       <h1 className="title">Test Your Luck</h1>
-      <div className="boxes-container">
-        <div className="box-container">
-          <div className="box">
-            <img src={currentImage} alt="Slot" />
-          </div>
-          <div class="select-wrapper">
-            <select class="drop-down" value={selection1} onChange={e => setSelection1(e.target.value)}>
+      <div className="box-row">
+        {images.map((imageSrc, index) => (
+          <div key={index} className="box-container">
+            <div className="box">
+              <img src={imageSrc} alt={`Slot ${index}`} />
+            </div>
+            {clicked && <button className="rerollButton" onClick={() => handleReroll(index)}>Reroll</button>}
+            <div class="select-wrapper">
+            <select class="drop-down" value={selections[index]} onChange={e => setSelection(e.target.value, index)}>
               {options.map(option => (
                 <option key={option} value={option}>{option}</option>
               ))}
             </select>
           </div>
-        </div>
-
-        <div className="box-container">
-          <div className="box">
-            <img src={currentImage} alt="Slot" />
           </div>
-          <div class="select-wrapper">
-            <select class="drop-down" value={selection1} onChange={e => setSelection2(e.target.value)}>
-              {options.map(option => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div className="box-container">
-          <div className="box">
-            <img src={currentImage} alt="Slot" />
-          </div>
-          <div class="select-wrapper">
-            <select class="drop-down" value={selection1} onChange={e => setSelection3(e.target.value)}>
-              {options.map(option => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
-        </div>
+        ))}
       </div>
-      
-      <button onClick={handleSpin} className="spinButton">Spin</button>
+      <button onClick={handleSpinAll} className="spinButton">Spin All</button>
+      {clicked &&<button onClick={recipe} className="recipeButton">Find Recipe</button>}
     </div>
   );
 };
