@@ -15,7 +15,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate('/spin')
+    navigate('/spin');
   }
 
   return (

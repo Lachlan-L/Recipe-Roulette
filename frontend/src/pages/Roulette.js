@@ -9,6 +9,7 @@ import carrot from "./assets/carrot.png";
 import steak from "./assets/steak.png";
 import chicken from "./assets/chicken.png";
 import fish from "./assets/fish.png";
+import { useNavigate } from "react-router-dom";
 
 const options = ['Vegetables', 'Seafood', 'Fruit', 'Meat'];
 const imageOptions = [banana, grape, pumpkin, meat, carrot, steak, chicken, fish, apple];
@@ -17,6 +18,7 @@ const Roulette = () => {
   const [selections, setSelections] = useState(Array(3).fill('Vegetables'));
   const [images, setImages] = useState(Array(3).fill(apple));
   const [clicked, setClicked] = useState(false);
+  const navigate = useNavigate();
 
   const handleSpinAll = () => {
     setClicked(true);
@@ -30,7 +32,6 @@ const Roulette = () => {
     const interval = setInterval(() => {
       setImages((currentImages) => currentImages.map((img, i) => {
         if (i === index) {
-          // Return a new random image for the current slot
           return imageOptions[Math.floor(Math.random() * imageOptions.length)];
         }
         return img;
@@ -39,11 +40,8 @@ const Roulette = () => {
       counter++;
       if (counter > 10) {
         clearInterval(interval);
-        // Optionally reset the slot to a specific image after spinning
         setImages((currentImages) => currentImages.map((img, i) => {
           if (i === index) {
-            // This could be adjusted to set a specific image after spinning
-            // For now, it randomly selects a new image to simulate a final spin result
             return imageOptions[Math.floor(Math.random() * imageOptions.length)];
           }
           return img;
@@ -59,7 +57,7 @@ const Roulette = () => {
   }
 
   const recipe = () => {
-
+    navigate('/recipe');
   }
 
   return (
