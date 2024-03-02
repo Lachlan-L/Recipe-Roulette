@@ -63,7 +63,6 @@ def getDetailsJson(recipeUrl):
     json_string = json.dumps(getDetails(recipeUrl), indent=4)
     return json_string
 
-print(getDetails("https://www.taste.com.au/recipes/basic-beef-burger/a584ab73-6348-4c78-879e-eb7560965a5f"))
 def getRecipesJson(ingredients, sort):
     json_string = json.dumps(getRecipes(ingredients, sort))
     return json_string
