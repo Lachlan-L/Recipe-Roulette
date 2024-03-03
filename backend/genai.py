@@ -34,6 +34,6 @@ def identifyKeyFood(description: str) -> str:
     return response.text
 
 # Usage
-#food_description = "RSPCA Approved Chicken Waffles"
+# food_description = "RSPCA Approved Chicken Waffles"
 # result = identifyKeyFood(food_description)
 # print(result)

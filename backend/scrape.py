@@ -5,6 +5,7 @@ import random
 import urllib.parse
 import json
 import os
+import genai
 
 # QUICK INTRO: MOST IMPORTANT FUNCTIONS
 
@@ -127,7 +128,9 @@ def seafoodScrape():
     return array
 
 def randomSelect(array):
-    return json.dumps(random.choice(array))
+    chosen = random.choice(array)
+    chosen['name'] = genai.identifyKeyFood(chosen['name'])
+    return json.dumps(chosen)
 
 def outputData(array, path):
     # Open the file in write mode
