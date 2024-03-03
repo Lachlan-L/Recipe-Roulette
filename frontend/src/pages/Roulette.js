@@ -56,13 +56,13 @@ const Roulette = () => {
   }
 
   const recipe = () => {
+    localStorage.setItem('ingredients', JSON.stringify(names));
     navigate('/recipe');
   }
 
   const showIngredient = async (index, category) => {
     const response = await fetch(`/get-ingredient?category=${category}`);
     const responseData = await response.json();
-    console.log(responseData);
     setImages((currentImages) => currentImages.map((img, i) => {
       if (i === index) {
         return responseData.image;
@@ -87,7 +87,6 @@ const Roulette = () => {
       }
       return link;
     }));
-    localStorage.setItem('ingredients', JSON.stringify(names));
   }
 
   return (

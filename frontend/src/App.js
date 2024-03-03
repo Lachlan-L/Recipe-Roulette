@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Roulette from "./pages/Roulette";
 import Recipe from "./pages/Recipe";
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import './App.css';
 
