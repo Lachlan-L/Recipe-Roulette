@@ -30,3 +30,4 @@ def identifyKeyFood(description: str) -> str:
     response = model_gemini_pro.generate_content(prompt)
     return response.text
 
+print(identifyKeyFood("Lilydale Free Range Whole Chicken"))
