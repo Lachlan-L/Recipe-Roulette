@@ -1,5 +1,10 @@
 body {
 }
+
+@font-face {
+    font-family: myFont;
+    src: url(./assets/BloggerSans-Bold.otf);
+}
 .main-wrapper {
     position: relative;
     display: flex;
@@ -53,6 +58,8 @@ body {
     transition: 1s;
     border: none;
     margin-top: 50%;
+    font-family: myFont;
+    color: #333;
 }
 
 .reroll:hover {

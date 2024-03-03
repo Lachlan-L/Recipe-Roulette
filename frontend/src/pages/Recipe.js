@@ -5,7 +5,7 @@ const Recipe = () => {
   const [data, setData] = useState([{}])
 
     useEffect(() => {
-      fetch("/get-recipes-details").then(
+      fetch("/members").then(
         res => res.json()
       ).then(
         data => {
