@@ -34,3 +34,6 @@ npm start
 # What we learned
 
 # Future Additions
+
+# Requirements
+Python 3.9 or later
