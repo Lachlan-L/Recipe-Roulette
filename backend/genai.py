@@ -1,16 +1,19 @@
-from configparser import ConfigParser
+from dotenv import load_dotenv
+import os
 import google.generativeai as genai
 
-config = ConfigParser()
-config.read('credentials.ini')
-api_key = config['API_KEY']['google_api_key']
+# Load environment variables from .env file
+load_dotenv()
 
-genai.configure(api_key = api_key)
+# Get API key from the environment variables
+api_key = os.getenv('GOOGLE_API_KEY')
+
+genai.configure(api_key=api_key)
 
 model_gemini_pro = genai.GenerativeModel('gemini-pro')
 
 def identifyKeyFood(description: str) -> str:
-    """"
+    """
     Parameters
     ----------
     description : str
@@ -26,8 +29,11 @@ def identifyKeyFood(description: str) -> str:
     Input: Lilydale Free Range Whole Chicken
     Output: Whole Chicken
     """
-    prompt = description + " - What is the main food item (couple of words)"
+    prompt = description + " - What is the main food item (in a couple of words)"
     response = model_gemini_pro.generate_content(prompt)
     return response.text
 
-print(identifyKeyFood("Lilydale Free Range Whole Chicken"))
+# Usage
+# food_description = "RSPCA Approved Chicken Waffles"
+# result = identifyKeyFood(food_description)
+# print(result)
