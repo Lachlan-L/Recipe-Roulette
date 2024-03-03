@@ -13,11 +13,15 @@ import { useNavigate } from "react-router-dom";
 
 const options = ['Vegetables', 'Seafood', 'Fruit', 'Meat'];
 const imageOptions = [banana, grape, pumpkin, meat, carrot, steak, chicken, fish, apple];
+const linkOptions = ['/', 'spin', 'recipe'];  // this is a placeholder, remove later
 
 const Roulette = () => {
   const [selections, setSelections] = useState(Array(3).fill('Vegetables'));
   const [images, setImages] = useState(Array(3).fill(apple));
   const [clicked, setClicked] = useState(false);
+  const [names, setNames] = useState(Array(3).fill('Brussel Sprouts'));
+  const [costs, setCosts] = useState(Array(3).fill(0));
+  const [links, setLinks] = useState(Array(3).fill('/'))
   const navigate = useNavigate();
 
   const handleSpinAll = () => {
@@ -40,12 +44,7 @@ const Roulette = () => {
       counter++;
       if (counter > 10) {
         clearInterval(interval);
-        setImages((currentImages) => currentImages.map((img, i) => {
-          if (i === index) {
-            return imageOptions[Math.floor(Math.random() * imageOptions.length)];
-          }
-          return img;
-        }));
+        showIngredient(index);
       }
     }, 100);
   };
@@ -60,28 +59,62 @@ const Roulette = () => {
     navigate('/recipe');
   }
 
+  const showIngredient = (index) => {
+    setImages((currentImages) => currentImages.map((img, i) => {
+      if (i === index) {
+        return imageOptions[Math.floor(Math.random() * imageOptions.length)]; // change this to img of ingredient from backend
+      }
+      return img;
+    }));
+    setNames((currentNames) => currentNames.map((name, i) => {
+      if (i === index) {
+        return options[Math.floor(Math.random() * options.length)]; // change this to name of ingredient from backend
+      }
+      return name;
+    }));
+    setCosts((currentCosts) => currentCosts.map((cost, i) => {
+      if (i === index) {
+        return Math.floor(Math.random() * 100); // change this to cost of ingredient from backend
+      }
+      return cost;
+    }));
+    setLinks((currentLinks) => currentLinks.map((link, i) => {
+      if (i === index) {
+        return linkOptions[Math.floor(Math.random() * linkOptions.length)]; // change this to link of ingredient from backend
+      }
+      return link;
+    }));
+  }
+
   return (
-    <div className="container">
-      <h1 className="title">Test Your Luck</h1>
-      <div className="box-row">
-        {images.map((imageSrc, index) => (
-          <div key={index} className="box-container">
-            <div className="box">
-              <img src={imageSrc} alt={`Slot ${index}`} />
+    <div className="page">
+      <div className="container">
+        <h1 className="title">Test Your Luck</h1>
+        <div className="box-row">
+          {images.map((imageSrc, index) => (
+            <div key={index} className="box-container">
+              <div className="box">
+                {clicked &&<p className="ing-name">{names[index]}</p>}
+                {!clicked &&<img src={imageSrc} alt={`Slot ${index}`} />}
+                {clicked &&<a href={links[index]} target="_blank" rel="noopener noreferrer">
+                  <img src={imageSrc} alt={`Slot ${index}`} />
+                </a>}
+                {clicked &&<p className="ing-cost">${costs[index]}</p>}
+              </div>
+              {clicked && <button className="rerollButton" onClick={() => handleReroll(index)}>Reroll</button>}
+              <div class="select-wrapper">
+                <select class="drop-down" value={selections[index]} onChange={e => setSelection(e.target.value, index)}>
+                  {options.map(option => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
             </div>
-            {clicked && <button className="rerollButton" onClick={() => handleReroll(index)}>Reroll</button>}
-            <div class="select-wrapper">
-            <select class="drop-down" value={selections[index]} onChange={e => setSelection(e.target.value, index)}>
-              {options.map(option => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
+        <button onClick={handleSpinAll} className="spinButton">Spin All</button>
+        {clicked &&<button onClick={recipe} className="recipeButton">Find Recipe</button>}
       </div>
-      <button onClick={handleSpinAll} className="spinButton">Spin All</button>
-      {clicked &&<button onClick={recipe} className="recipeButton">Find Recipe</button>}
     </div>
   );
 };
