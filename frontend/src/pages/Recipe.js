@@ -3,22 +3,23 @@ import "./Recipe.css";
 
 const Recipe = () => {
   const [data, setData] = useState([{}])
+  const queryParam = "mandarin"
 
-    useEffect(() => {
-      fetch("/members").then(
-        res => res.json()
-      ).then(
-        data => {
-          setData(data)
-          console.log(data)
-        }
-      )
-    }, [])
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+      const response = await fetch(`/get-recipe-details?ingredients=${queryParam}`);
+      const responseData = await response.json();
+      setData(responseData);
+  };
 
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleButtonClick = () => {
     setIsFlipped(!isFlipped);
+    fetchData();
   };
 
   return (
