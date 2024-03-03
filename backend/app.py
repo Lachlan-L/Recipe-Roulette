@@ -46,13 +46,13 @@ def getRecipeDetails():
 @app.route("/get-ingredient", methods=['GET'])
 def getIngredient():
     if(request.args.get('category') != None):
-        if (request.args.get('category') == 'meat'):
+        if (request.args.get('category') == 'Meat'):
             return scrape.randomSelect(scrape.readData('backend/data/meat.json'))
-        elif (request.args.get('category') == 'vegetable'):
+        elif (request.args.get('category') == 'Vegetable'):
             return scrape.randomSelect(scrape.readData('backend/data/vegetable.json'))
-        elif (request.args.get('category') == 'fruit'):
+        elif (request.args.get('category') == 'Fruit'):
             return scrape.randomSelect(scrape.readData('backend/data/fruit.json'))
-        elif (request.args.get('category') == 'seafood'):
+        elif (request.args.get('category') == 'Seafood'):
             return scrape.randomSelect(scrape.readData('backend/data/seafood.json'))
     else:
         return 'bad request!', 400
