@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import random
 import urllib.parse
 import json
+import os
 
 # QUICK INTRO: MOST IMPORTANT FUNCTIONS
 
@@ -32,6 +33,7 @@ def colesScrape(URL):
             SAVEDTAG = soup.find(class_="badge-label")
             LINKTAG = soup.find('img', src=True)
 
+            REFTAG = soup.find(class_="product__link")
             # Split the partial URL to extract the query string
             query_string = LINKTAG['src'].split('?')[1]
 
@@ -53,6 +55,7 @@ def colesScrape(URL):
             newObj['name'] = name
             newObj['cost'] = float(COSTTAG.text[1:])
             newObj['image'] = imageLink
+            newObj['link'] = "coles.com.au" + REFTAG['href']
             # newObj['saved'] = float(saved.split(" ")[1][1:])
 
             returnArray.append(newObj)
@@ -74,6 +77,7 @@ def aldiScrape(URL):
         NAMETAG = soup.find(class_="box--description--header")
         COSTTAG = soup.find(class_="box--value")
         CENTTAG = soup.find(class_="box--decimal")
+
 
         imageLink = obj.find('img')['src']
         newObj = {}
@@ -124,6 +128,20 @@ def seafoodScrape():
 
 def randomSelect(array):
     return json.dumps(random.choice(array))
+
+def outputData(array, path):
+    # Open the file in write mode
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w+') as file:
+    # Write the JSON representation of the input array to the file
+        json.dump(array, file)
+
+def readData(path):
+        # Open the file in read mode
+    with open(path, 'r') as file:
+        # Load the JSON data from the file
+        json_data = json.load(file)
+        return json_data
 
 # FRUIT "https://www.coles.com.au/on-special/fruit-vegetables/fruit?page=1"
 # VEGETABLE "https://www.coles.com.au/on-special/fruit-vegetables/vegetables"
