@@ -2,4 +2,4 @@ venv
 __pycache__
 backend/data
 credentials.ini
-
+.env
