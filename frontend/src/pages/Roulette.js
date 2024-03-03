@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 
 const options = ['Vegetable', 'Seafood', 'Fruit', 'Meat'];
 const imageOptions = [banana, grape, pumpkin, meat, carrot, steak, chicken, fish, apple];
-const linkOptions = ['/', 'spin', 'recipe'];  // this is a placeholder, remove later
 
 const Roulette = () => {
   const [selections, setSelections] = useState(Array(3).fill('Vegetable'));
@@ -87,6 +86,7 @@ const Roulette = () => {
       }
       return link;
     }));
+    localStorage.setItem('ingredients', JSON.stringify(names));
   }
 
   return (
