@@ -5,6 +5,12 @@ body {
     font-family: myFont;
     src: url(./assets/BloggerSans-Bold.otf);
 }
+
+@font-face {
+    font-family: bold-lining;
+    src: url(./assets/Bold\ Lining.ttf);
+}
+
 .main-wrapper {
     position: relative;
     display: flex;
@@ -18,15 +24,19 @@ body {
 }
 
 .recipe-wrapper {
+    font-family: bold-lining;
+    font-size: 2em;
+    line-height: 0.7em;
+    border: none;
+    background-color: #F5F5DC;
     display: flex;
     flex-direction: column;
     text-align: center;
     border: 1px solid black ;
     justify-content: space-around;
-    background-color: white;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    padding: 10% 10%;
+    padding: 3%;
     transition: transform 2s ease;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
@@ -71,6 +81,24 @@ body {
 .reroll:active {
     transform: rotate(360deg);
     transition: 2ms;
-
 }
 
+.imageStyle {
+    width: 428px;
+    height: 285px;
+    border: 1px solid black;
+}
+
+h2 {
+    text-transform: capitalize;
+    font-size: 2em;
+}
+
+ul {
+    text-align: left;
+    padding-left: 10px;
+}
+
+p {
+    text-decoration: underline;
+}

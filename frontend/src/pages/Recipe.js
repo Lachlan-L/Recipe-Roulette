@@ -38,12 +38,13 @@ const Recipe = () => {
                 {(typeof data.image === 'undefined') ? (
                   <p>Loading...</p>
                 ) : (
-                  <img src={data.image} alt={data.title} />
+                  <img src={data.image} alt={data.title} className="imageStyle" />
                 )}
               </div>
           </div>
           <div class="ingredients-wrapper">
               <div>
+                <p>Ingredient List</p>
                 {(typeof data.ingredients === 'undefined') ? (
                 <p>Loading...</p>
                 ) : (
