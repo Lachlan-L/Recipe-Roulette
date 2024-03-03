@@ -1,5 +1,3 @@
-body {
-}
 
 @font-face {
     font-family: myFont;
@@ -57,7 +55,7 @@ body {
     font-size: 7rem;
     transition: 1s;
     border: none;
-    margin-top: 50%;
+    margin-top: 20%;
     font-family: myFont;
     color: #333;
 }

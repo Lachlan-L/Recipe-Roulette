@@ -10,6 +10,7 @@ import steak from "./assets/steak.png";
 import chicken from "./assets/chicken.png";
 import fish from "./assets/fish.png";
 import { useNavigate } from "react-router-dom";
+import './bubble-right.css';
 
 const options = ['Vegetables', 'Seafood', 'Fruit', 'Meat'];
 const imageOptions = [banana, grape, pumpkin, meat, carrot, steak, chicken, fish, apple];
@@ -101,7 +102,7 @@ const Roulette = () => {
                 </a>}
                 {clicked &&<p className="ing-cost">${costs[index]}</p>}
               </div>
-              {clicked && <button className="rerollButton" onClick={() => handleReroll(index)}>Reroll</button>}
+              {clicked && <button className="rerollButton btn-22 rerollType" onClick={() => handleReroll(index)}><span >Reroll</span></button>}
               <div class="select-wrapper">
                 <select class="drop-down" value={selections[index]} onChange={e => setSelection(e.target.value, index)}>
                   {options.map(option => (
@@ -112,8 +113,8 @@ const Roulette = () => {
             </div>
           ))}
         </div>
-        <button onClick={handleSpinAll} className="spinButton">Spin All</button>
-        {clicked &&<button onClick={recipe} className="recipeButton">Find Recipe</button>}
+        <button onClick={handleSpinAll} className="spinButton btn-22 spinType"><span>Spin All</span></button>
+        {clicked &&<button onClick={recipe} className="btn-22 recipeButton recipeType"><span>Find Recipe</span></button>}
       </div>
     </div>
   );
