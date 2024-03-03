@@ -30,10 +30,13 @@ In two different terminals
 cd backend
 python3 app.py
 ```
+Open localhost:5001 in url
 ```
 cd frontend
 npm start
 ```
+Open localhost:3000 in url
+
 
 # How we built it
 

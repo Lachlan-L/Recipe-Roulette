@@ -87,7 +87,7 @@
     border: 1px solid black;
 }
 
-h2 {
+.recipeTitle {
     text-transform: capitalize;
     font-size: 2em;
 }
@@ -97,6 +97,6 @@ ul {
     padding-left: 10px;
 }
 
-p {
+.ingredientList {
     text-decoration: underline;
 }

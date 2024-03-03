@@ -30,7 +30,7 @@ const Recipe = () => {
             {(typeof data.title === 'undefined') ? (
               <p>Loading...</p>
             ) : (
-              <h2>{data.title}</h2>
+              <h2 class = 'recipeTitle'>{data.title}</h2>
             )}
           </div>
           <div class="image-wrapper">
@@ -44,7 +44,7 @@ const Recipe = () => {
           </div>
           <div class="ingredients-wrapper">
               <div>
-                <p>Ingredient List</p>
+                <p class='ingredientList'>Ingredient List</p>
                 {(typeof data.ingredients === 'undefined') ? (
                 <p>Loading...</p>
                 ) : (
