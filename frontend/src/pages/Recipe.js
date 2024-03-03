@@ -23,7 +23,7 @@ const Recipe = () => {
   };
 
   return (
-  <div class="page-wrapper">
+  <div class="page3-wrapper">
     <div class="main-wrapper">
       <div id="recipe-box" className={`recipe-wrapper ${isFlipped ? 'flipped' : ''}`}>
           <div class="title-wrapper">
@@ -42,9 +42,9 @@ const Recipe = () => {
                 )}
               </div>
           </div>
+          <p class='ingredientList'>Ingredient List</p>
           <div class="ingredients-wrapper">
               <div>
-                <p class='ingredientList'>Ingredient List</p>
                 {(typeof data.ingredients === 'undefined') ? (
                 <p>Loading...</p>
                 ) : (
