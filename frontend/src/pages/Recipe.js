@@ -3,13 +3,15 @@ import "./Recipe.css";
 
 const Recipe = () => {
   const [data, setData] = useState([{}])
-  const queryParam = "mandarin"
 
   useEffect(() => {
-    fetchData();
+    const savedData = JSON.parse(localStorage.getItem('ingredients'));
+    const queryParam = savedData[0] + '+' + savedData[1] + '+' + savedData[2];
+    queryParam.replace(' ', '+');
+    fetchData(queryParam);
   }, []);
 
-  const fetchData = async () => {
+  const fetchData = async (queryParam) => {
       const response = await fetch(`/get-recipe-details?ingredients=${queryParam}`);
       const responseData = await response.json();
       setData(responseData);

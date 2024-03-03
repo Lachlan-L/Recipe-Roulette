@@ -12,12 +12,11 @@ import fish from "./assets/fish.png";
 import { useNavigate } from "react-router-dom";
 import './bubble-right.css';
 
-const options = ['Vegetables', 'Seafood', 'Fruit', 'Meat'];
+const options = ['Vegetable', 'Seafood', 'Fruit', 'Meat'];
 const imageOptions = [banana, grape, pumpkin, meat, carrot, steak, chicken, fish, apple];
-const linkOptions = ['/', 'spin', 'recipe'];  // this is a placeholder, remove later
 
 const Roulette = () => {
-  const [selections, setSelections] = useState(Array(3).fill('Vegetables'));
+  const [selections, setSelections] = useState(Array(3).fill('Vegetable'));
   const [images, setImages] = useState(Array(3).fill(apple));
   const [clicked, setClicked] = useState(false);
   const [names, setNames] = useState(Array(3).fill('Brussel Sprouts'));
@@ -45,7 +44,7 @@ const Roulette = () => {
       counter++;
       if (counter > 10) {
         clearInterval(interval);
-        showIngredient(index);
+        showIngredient(index, selections[index]);
       }
     }, 100);
   };
@@ -60,31 +59,35 @@ const Roulette = () => {
     navigate('/recipe');
   }
 
-  const showIngredient = (index) => {
+  const showIngredient = async (index, category) => {
+    const response = await fetch(`/get-ingredient?category=${category}`);
+    const responseData = await response.json();
+    console.log(responseData);
     setImages((currentImages) => currentImages.map((img, i) => {
       if (i === index) {
-        return imageOptions[Math.floor(Math.random() * imageOptions.length)]; // change this to img of ingredient from backend
+        return responseData.image;
       }
       return img;
     }));
     setNames((currentNames) => currentNames.map((name, i) => {
       if (i === index) {
-        return options[Math.floor(Math.random() * options.length)]; // change this to name of ingredient from backend
+        return responseData.name;
       }
       return name;
     }));
     setCosts((currentCosts) => currentCosts.map((cost, i) => {
       if (i === index) {
-        return Math.floor(Math.random() * 100); // change this to cost of ingredient from backend
+        return responseData.cost;
       }
       return cost;
     }));
     setLinks((currentLinks) => currentLinks.map((link, i) => {
       if (i === index) {
-        return linkOptions[Math.floor(Math.random() * linkOptions.length)]; // change this to link of ingredient from backend
+        return responseData.link;
       }
       return link;
     }));
+    localStorage.setItem('ingredients', JSON.stringify(names));
   }
 
   return (
