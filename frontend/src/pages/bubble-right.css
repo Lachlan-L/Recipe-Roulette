@@ -54,6 +54,12 @@
   margin-top: 5%;
   padding: 0.5rem 1rem;
 }
+
+.rerollType {
+  font-size: smaller;
+  padding: 0px 10px;
+  margin-bottom: 5px;
+}
 .btn-22 span {
   mix-blend-mode: difference;
 }

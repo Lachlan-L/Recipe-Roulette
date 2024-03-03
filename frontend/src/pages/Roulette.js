@@ -102,7 +102,7 @@ const Roulette = () => {
                 </a>}
                 {clicked &&<p className="ing-cost">${costs[index]}</p>}
               </div>
-              {clicked && <button className="rerollButton" onClick={() => handleReroll(index)}>Reroll</button>}
+              {clicked && <button className="rerollButton btn-22 rerollType" onClick={() => handleReroll(index)}><span >Reroll</span></button>}
               <div class="select-wrapper">
                 <select class="drop-down" value={selections[index]} onChange={e => setSelection(e.target.value, index)}>
                   {options.map(option => (
