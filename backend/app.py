@@ -29,8 +29,9 @@ def members():
 @app.route("/get-recipe-details", methods=['GET'])
 def getRecipeDetails():
     if(request.args.get('ingredients') != None):
-        print(getRandomRecipeJson(request.args.get('ingredients'), "az"))
-        return getRandomRecipeJson(request.args.get('ingredients'), "az")
+        obj = getRandomRecipeJson(request.args.get('ingredients'), "az")
+        print(obj)
+        return obj
     else:
         return 'bad request!', 400
 
@@ -64,3 +65,4 @@ if __name__ == "__main__":
     scrape.outputData(scrape.seafoodScrape(), 'backend/data/seafood.json')
     scrape.outputData(scrape.fruitScrape(), 'backend/data/fruit.json')
     app.run(debug = True, port = 5001)
+    print("hello world!")
