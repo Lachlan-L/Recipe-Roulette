@@ -3,6 +3,7 @@ import "./Recipe.css";
 
 const Recipe = () => {
   const [data, setData] = useState([{}])
+  let inge = 'bok choy';
 
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem('ingredients'));
@@ -21,7 +22,10 @@ const Recipe = () => {
 
   const handleButtonClick = () => {
     setIsFlipped(!isFlipped);
-    fetchData();
+    const savedData = JSON.parse(localStorage.getItem('ingredients'));
+    const queryParam = savedData[0] + '+' + savedData[1] + '+' + savedData[2];
+    queryParam.replace(' ', '+');
+    fetchData(queryParam);
   };
 
   return (

@@ -56,6 +56,8 @@ const Roulette = () => {
   }
 
   const recipe = () => {
+    localStorage.setItem('ingredients', JSON.stringify(names));
+    console.log(JSON.stringify(names));
     navigate('/recipe');
   }
 
@@ -88,6 +90,7 @@ const Roulette = () => {
       return link;
     }));
     localStorage.setItem('ingredients', JSON.stringify(names));
+    console.log(JSON.stringify(names));
   }
 
   return (
