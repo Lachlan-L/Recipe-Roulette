@@ -48,12 +48,13 @@ def colesScrape(URL):
             name = NAMETAG.text.split('|')[0]
             name = name.replace("Coles ", "")
 
+            costStr = COSTTAG.text.replace('$','')
             if SAVEDTAG:
                 saved = SAVEDTAG.text
 
             newObj = {}
             newObj['name'] = name
-            newObj['cost'] = float(COSTTAG.text[1:])
+            newObj['cost'] = float(costStr)
             newObj['image'] = imageLink
             newObj['link'] = "coles.com.au" + REFTAG['href']
             # newObj['saved'] = float(saved.split(" ")[1][1:])

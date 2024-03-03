@@ -40,10 +40,11 @@ def webpage_scraper(url):
                     product_name = product_name[:match.start()]
 
                 product_name = product_name.rstrip()
+                cost = cost.replace('$', '')
                 # Print the product details
                 product_dict = {
                         'name': product_name,
-                        'cost': cost,
+                        'cost': float(cost),
                         'image': image_url,
                         'link': "harrisfarm.com.au" + product_path,
                     }
