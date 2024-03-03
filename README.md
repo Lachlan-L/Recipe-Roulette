@@ -10,9 +10,17 @@ let's say there's a bit of luck involved in your recipes.
 # What it does
 
 ## How to run
+Before you can use the Gemini API, you must first obtain an API key. If you don't already have one, create a key with one click in Google AI Studio.
+https://aistudio.google.com/app/apikey
+
+Create file named **.env** in route directory and paste in
+```
+GOOGLE_API_KEY=YOUR_API_KEY
+```
 
 Download the dependency:
 ```
+cd backend
 pip install -r requirements.txt
 ```
 
@@ -34,3 +42,6 @@ npm start
 # What we learned
 
 # Future Additions
+
+# Requirements
+Python 3.9 or later
