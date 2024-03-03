@@ -23,28 +23,28 @@ const LandingPage = () => {
     <div class="slider">
       <div class="slide-track">
         <div class="slide">
-        <img src={apple}></img>
+        <img class="icon" src={apple}></img>
         </div>
         <div class="slide">
-        <img src={grape}></img>
+        <img class="icon" src={grape}></img>
         </div>
         <div class="slide">
-        <img src={banana}></img>
+        <img class="icon" src={banana}></img>
         </div>
         <div class="slide">
-        <img src={pumpkin}></img>
+        <img class="icon" src={pumpkin}></img>
         </div>
         <div class="slide">
-        <img src={steak}></img>
+        <img class="icon" src={steak}></img>
         </div>
         <div class="slide">
-        <img src={carrot}></img>
+        <img class="icon" src={carrot}></img>
         </div>
         <div class="slide">
-        <img src={chicken}></img>
+        <img class="icon" src={chicken}></img>
         </div>
         <div class="slide">
-        <img src={fish}></img>
+        <img class="icon" src={fish}></img>
         </div>
       </div>
     </div>
@@ -65,28 +65,28 @@ const LandingPage = () => {
     <div class="slider">
       <div class="slide-track">
       <div class="slide">
-        <img src={apple}></img>
+        <img class="icon" src={apple}></img>
         </div>
         <div class="slide">
-        <img src={grape}></img>
+        <img class="icon" src={grape}></img>
         </div>
         <div class="slide">
-        <img src={banana}></img>
+        <img class="icon" src={banana}></img>
         </div>
         <div class="slide">
-        <img src={pumpkin}></img>
+        <img class="icon" src={pumpkin}></img>
         </div>
         <div class="slide">
-        <img src={steak}></img>
+        <img class="icon" src={steak}></img>
         </div>
         <div class="slide">
-        <img src={carrot}></img>
+        <img class="icon" src={carrot}></img>
         </div>
         <div class="slide">
-        <img src={chicken}></img>
+        <img class="icon" src={chicken}></img>
         </div>
         <div class="slide">
-        <img src={fish}></img>
+        <img class="icon" src={fish}></img>
         </div>
       </div>
     </div>
